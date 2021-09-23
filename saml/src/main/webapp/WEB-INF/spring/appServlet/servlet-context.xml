@@ -19,7 +19,7 @@
 		처리 = 스캐닝의 기준점이 될 위치를 설정 = spring-context 에서 지원하는 기능을 사용 = base-package : 
 		탑레벨 패키지 -->
 	<context:component-scan
-		base-package="com.datasolution.saml.controller" use-default-filters="false">
+		base-package="com.datasolution.saml" use-default-filters="false">
 		<!-- 컨트롤러만 등록하겠다(@Controller) -->
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />

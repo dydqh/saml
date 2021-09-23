@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>SAMl 로그인 예제</h1>
-	<form action="/ssoredirect">
+	<form action="ssoredirect">
 		<button>로그인(Redirect to IdP)</button>
 	</form>
 </body>

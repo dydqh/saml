@@ -15,7 +15,7 @@
 	<!-- root-context 에서는 다음과 같이 컴포넌트 스캐닝을 실시한다. = servlet-context에서 등록한 @Controller 
 		제외 전부 스캔하여 등록 = @Repository , @Service , @Component 등이 등록 -->
 	<context:component-scan
-		base-package="com.datasolution.saml.controller">
+		base-package="com.datasolution.saml">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>

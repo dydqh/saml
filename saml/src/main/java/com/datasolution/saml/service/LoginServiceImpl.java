@@ -13,7 +13,6 @@ import org.opensaml.xml.util.Base64;
 import org.opensaml.xml.util.XMLHelper;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -58,11 +57,14 @@ public class LoginServiceImpl implements LoginService {
 	// it
 	private String generateSAMLRequest(AuthnRequest authRequest) throws Exception {
 
+		System.out.println(authRequest);
 		Marshaller marshaller = org.opensaml.Configuration.getMarshallerFactory().getMarshaller(authRequest);
+		System.out.println(marshaller);
 		org.w3c.dom.Element authDOM = marshaller.marshall(authRequest);
 		StringWriter rspWrt = new StringWriter();
 		XMLHelper.writeNode(authDOM, rspWrt);
 		String messageXML = rspWrt.toString();
+		System.out.println(messageXML);
 
 		Deflater deflater = new Deflater(Deflater.DEFLATED, true);
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
