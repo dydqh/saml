@@ -14,6 +14,7 @@
 	<c:choose>
 		<c:when test="${not empty AssertionId}">
 			<h3>AssertionId = ${AssertionId}</h3>
+			<h3>SP Entity ID = ${SpEntityId}</h3>
 			<form action="logout">
 				<button>로그아웃</button>
 			</form>
@@ -22,6 +23,10 @@
 			<form action="ssoredirect">
 				<button>로그인(Redirect to IdP)</button>
 			</form>
+			<br>
+			<a href="http://localhost:8180/saml_idp/">
+				<button>로그인(Local Idp)</button>
+			</a>
 		</c:otherwise>
 	</c:choose>
 </body>

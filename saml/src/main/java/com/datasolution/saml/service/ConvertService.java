@@ -7,4 +7,6 @@ public interface ConvertService {
 	Document convertStringToXMLDocument(String xmlString);
 
 	String getValueByKeyInTag(Document doc, String tag, String key);
+	
+	String getTextByTag(Document doc, String tag);
 }

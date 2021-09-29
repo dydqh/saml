@@ -44,5 +44,19 @@ public class ConvertServiceImpl implements ConvertService{
 	        return value;
 		}
 	}
+
+	@Override
+	public String getTextByTag(Document doc, String tag) {
+		Element root = doc.getDocumentElement();
+		NodeList list = root.getElementsByTagName(tag);
+		if(list.getLength() != 1) {
+			return null;
+		}
+		else {
+			Element element = (Element)list.item(0);
+	        String text = element.getFirstChild().getNodeValue();
+	        return text;
+		}
+	}
 	
 }

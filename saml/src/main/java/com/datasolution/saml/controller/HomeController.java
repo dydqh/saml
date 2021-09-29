@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,18 +59,22 @@ public class HomeController {
 	private CryptionService cryptionService;
 
 	@PostMapping("/")
-	public String loginSuccess(@RequestParam(required = false) String SAMLResponse, HttpSession session) {
+	public String loginSuccess(@RequestParam(required = false) String SAMLResponse, HttpSession session, Model model) {
 
 		String decodedSAML = cryptionService.decodeByBase64(SAMLResponse);
 		Document doc = convertService.convertStringToXMLDocument(decodedSAML);
 		String assertionId = convertService.getValueByKeyInTag(doc, "saml2:Assertion", "ID");
-		session.setAttribute("AssertionId", assertionId);
-
+		String spEntityId = convertService.getTextByTag(doc, "saml2:Audience");
+		if (spEntityId.equals("SPEntityIdByDataSolution")) {
+			session.setAttribute("AssertionId", assertionId);
+			model.addAttribute("SpEntityId", spEntityId);
+		}
 		return "home";
 	}
 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
+		
 		session.removeAttribute("AssertionId");
 		return "redirect:/";
 	}
