@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<samlp:AuthnRequest
+   xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+   AssertionConsumerServiceURL="https://login.company.com/ssorequest/idp/okta"
+   ForceAuthn="false" ID="33e93341-5638-4fbf-90bf-7095703568fc"
+   IsPassive="false" IssueInstant="2021-09-24T05:00:48.861Z"
+   ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Version="2.0">
+   
+   
+   <saml2:Issuer
+      xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">http://www.okta.com/0oa23q5th1AwrNPZZ696</saml2:Issuer>
+      
+      
+   <saml2p:NameIDPolicy
+      xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol" AllowCreate="true"
+      Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent" />
+      
+      
+   <saml2p:RequestedAuthnContext
+      xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol" Comparison="exact">
+      <saml:AuthnContextClassRef
+         xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
+   </saml2p:RequestedAuthnContext>
+   
+   
+</samlp:AuthnRequest>
