@@ -17,8 +17,23 @@
 				e.preventDefault();
 			}
 			else{
-				$("input[name=SAMLResponse]").val("111111111111111111");
-				$("input[name=RelayState]").val("222222222222222222");
+				$.ajax({
+					url : "http://localhost:8180/saml_idp/data/getSAMLResponse",
+					type : "post",
+					success : function(resp){
+						console.log(resp);
+						$("input[name=SAMLResponse]").val(resp);
+					}
+				});
+				
+				$.ajax({
+					url : "http://localhost:8180/saml_idp/data/getRelayState",
+					type : "post",
+					success : function(resp){
+						console.log(resp);
+						$("input[name=RelayState]").val(resp);
+					}
+				});
 			}
 		});
 	})
