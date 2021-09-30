@@ -24,9 +24,11 @@
 				<button>로그인(Redirect to IdP)</button>
 			</form>
 			<br>
-			<a href="http://localhost:8180/saml_idp/">
+			<form action="ssoredirect2">
 				<button>로그인(Local Idp)</button>
-			</a>
+			</form>
+			${AuthResponse}
+			${Test}
 		</c:otherwise>
 	</c:choose>
 </body>

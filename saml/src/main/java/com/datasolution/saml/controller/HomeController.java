@@ -46,6 +46,15 @@ public class HomeController {
 				issuerId);
 		return "redirect:" + redirectUrl;
 	}
+	
+	@GetMapping("/ssoredirect2")
+	public String redirectToIDPWithAuthNRequest2(HttpSession session) {
+
+		String idpAppURL2 = "http://localhost:8180/saml_idp";
+		String redirectUrl = loginService.getAuthNRedirectUrl(idpAppURL2, relayState, assertionConsumerServiceUrl,
+				issuerId);
+		return "redirect:" + redirectUrl;
+	}
 
 	@GetMapping("/")
 	public String loginSuccess() {
