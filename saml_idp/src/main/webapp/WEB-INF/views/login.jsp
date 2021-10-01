@@ -10,38 +10,41 @@
 
 <script>
 	$(function(){
-		$("#targetForm").on("submit", function(e){
+		$("input[type=submit]").on("click", function(e){
 			var id = $("input[name=id]").val();
 			var pw = $("input[name=password]").val();
-			if(id != "admin" || pw != "1234"){
-				e.preventDefault();
-			}
-			else{
+			var SAMLResponse;
+			var RelayState;
+			
+			e.preventDefault();
+			if(id == "admin" && pw == "1234"){
 				$.ajax({
 					url : "http://localhost:8180/saml_idp/data/getSAMLResponse",
-					type : "post",
-					success : function(resp){
-						console.log(resp);
-						$("input[name=SAMLResponse]").val(resp);
-					}
+					type : "post"
+				}).done(function(resp){
+					SAMLResponse = resp;
+					console.log(resp);
 				});
 				
 				$.ajax({
 					url : "http://localhost:8180/saml_idp/data/getRelayState",
 					type : "post",
 					success : function(resp){
+						RelayState = resp;
 						console.log(resp);
-						$("input[name=RelayState]").val(resp);
 					}
 				});
 			}
+			$("input[name=SAMLResponse]").val(SAMLResponse);
+			$("input[name=RelayState]").val(RelayState);
+			console.log($("input[name=SAMLResponse]").val());
+			console.log($("input[name=RelayState]").val());
 		});
 	})
 </script>
 
 </head>
 <body>
-
 	<div style="display: inline-block;">
 		<input type="text" name="id" placeholder="ID" autocomplete="off">
 		<input type="password" name="password" placeholder="PASSWORD">

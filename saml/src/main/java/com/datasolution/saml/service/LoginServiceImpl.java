@@ -31,8 +31,6 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public String getAuthNRedirectUrl(String idpAppURL, String relayState, String assertionConsumerServiceUrl,
 			String issuerId) {
-//		log.info("idpAppURL=" + idpAppURL + " relayState=" + relayState + " assertionConsumerServiceUrl="
-//				+ assertionConsumerServiceUrl + " issuerId=" + issuerId);
 		String url = null;
 
 		try {
