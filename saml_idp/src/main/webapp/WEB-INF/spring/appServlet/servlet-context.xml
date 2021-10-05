@@ -41,5 +41,14 @@
 		필요 -->
 	<annotation-driven />
 	<resources location="/resources/" mapping="/res/**"></resources>
+	
+	<interceptors> 
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/login"/>
+			
+			<beans:bean class="com.datasolution.saml_idp.interceptor.AuthInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 
 </beans:beans>

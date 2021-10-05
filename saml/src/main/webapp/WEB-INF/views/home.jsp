@@ -10,7 +10,7 @@
 <title>SAML Login Example</title>
 </head>
 <body>
-	<h1>SAMl 로그인 예제</h1>
+	<h1>SAMl 로그인 예제(SP)</h1>
 	<c:choose>
 		<c:when test="${not empty AssertionId}">
 			<h3>AssertionId = ${AssertionId}</h3>
@@ -25,10 +25,10 @@
 			</form>
 			<br>
 			<form action="ssoredirect2">
-				<button>로그인(Local Idp)</button>
+				<button>로그인(Local IdP)</button>
 			</form>
-			${AuthResponse}
-			${Test}
+			<br>
+			<a href="http://localhost:8180/saml_idp"><button>Local IdP로 이동</button></a>
 		</c:otherwise>
 	</c:choose>
 </body>

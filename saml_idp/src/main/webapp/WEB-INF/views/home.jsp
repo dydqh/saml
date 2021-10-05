@@ -5,15 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
-	<h1>로그인(IdP)</h1>
-	<form action="" method="post">
-		<input type="text" name="id">
-		<input type="text" name="password">
-		<input type="submit" value="LOGIN">
-	</form>
+	<h1>IdP</h1>
+	<h3>UUID = ${uuid}</h3>
+	<a href="/saml_idp/logout"><button>로그아웃</button></a>
+	<br>
 	<br>
 	<a href="http://localhost:8080/saml"><button>SP로 이동</button></a>
 </body>

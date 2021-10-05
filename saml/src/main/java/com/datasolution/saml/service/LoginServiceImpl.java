@@ -23,7 +23,7 @@ public class LoginServiceImpl implements LoginService {
 		try {
 			DefaultBootstrap.bootstrap();
 		} catch (Exception e) {
-			log.error("SAML initialize가 불가능합니다.");
+//			log.error("SAML initialize가 불가능합니다.");
 			e.printStackTrace();
 		}
 	}
@@ -43,11 +43,11 @@ public class LoginServiceImpl implements LoginService {
 			url = idpAppURL + "?SAMLRequest=" + samlRequest + "&RelayState=" + URLEncoder.encode(relayState, "UTF-8");
 
 		} catch (Exception ex) {
-			log.error("Exception while creating AuthN request - " + ex.getMessage(), ex);
+//			log.error("Exception while creating AuthN request - " + ex.getMessage(), ex);
 			throw new RuntimeException("Unable to generate redirect Url");
 		}
 
-		log.debug("redirect url is = " + url);
+//		log.debug("redirect url is = " + url);
 		return url;
 	}
 
@@ -61,14 +61,29 @@ public class LoginServiceImpl implements LoginService {
 		XMLHelper.writeNode(authDOM, rspWrt);
 		String messageXML = rspWrt.toString();
 
-		Deflater deflater = new Deflater(Deflater.DEFLATED, true);
-		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-		DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(byteArrayOutputStream, deflater);
-		deflaterOutputStream.write(messageXML.getBytes());
-		deflaterOutputStream.close();
-		String samlRequest = Base64.encodeBytes(byteArrayOutputStream.toByteArray(), Base64.DONT_BREAK_LINES);
+//		Deflater deflater = new Deflater(Deflater.DEFLATED, true);
+//		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//		DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(byteArrayOutputStream, deflater);
+//		deflaterOutputStream.write(messageXML.getBytes());
+//		deflaterOutputStream.close();
+//		String samlRequest = Base64.encodeBytes(byteArrayOutputStream.toByteArray(), Base64.DONT_BREAK_LINES);
+//		return URLEncoder.encode(samlRequest, "UTF-8");
+		
+//		System.out.println(messageXML);
+		
+		byte[] messageXMLData = messageXML.getBytes("UTF-8");
+//		byte[] output = new byte[1000];
+//		Deflater deflater2 = new Deflater();
+//		deflater2.setInput(messageXMLData);
+//		deflater2.finish();
+//		int bytesAfterdeflate = deflater2.deflate(output);
+//		System.out.println("Compressed byte number:"+bytesAfterdeflate);
+//		System.out.println("output : " + output);
+		String samlRequest = Base64.encodeBytes(messageXMLData, Base64.DONT_BREAK_LINES);
+		
+//		System.out.println(samlRequest);
+		
 		return URLEncoder.encode(samlRequest, "UTF-8");
-
 	}
 
 }

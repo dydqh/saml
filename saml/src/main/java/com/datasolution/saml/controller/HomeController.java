@@ -40,7 +40,7 @@ public class HomeController {
 	private LoginService loginService;
 
 	@GetMapping("/ssoredirect")
-	public String redirectToIDPWithAuthNRequest(HttpSession session) {
+	public String redirectToIDPWithAuthNRequest() {
 
 		String redirectUrl = loginService.getAuthNRedirectUrl(idpAppURL, relayState, assertionConsumerServiceUrl,
 				issuerId);
@@ -48,11 +48,12 @@ public class HomeController {
 	}
 	
 	@GetMapping("/ssoredirect2")
-	public String redirectToIDPWithAuthNRequest2(HttpSession session) {
+	public String redirectToIDPWithAuthNRequest2() {
 
-		String idpAppURL2 = "http://localhost:8180/saml_idp";
+		String idpAppURL2 = "http://localhost:8180/saml_idp/login";
 		String redirectUrl = loginService.getAuthNRedirectUrl(idpAppURL2, relayState, assertionConsumerServiceUrl,
 				issuerId);
+		
 		return "redirect:" + redirectUrl;
 	}
 

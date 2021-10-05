@@ -1,14 +1,9 @@
 package com.datasolution.saml;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.io.StringWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.zip.Deflater;
-import java.util.zip.DeflaterOutputStream;
-import java.util.zip.Inflater;
-import java.util.zip.InflaterOutputStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,9 +59,8 @@ public class RequestBuilderTest {
 		String decodedTarget = URLDecoder.decode(samlRequest, "UTF-8");
 		System.out.println("decodedTarget : " + decodedTarget);
 
-		byte[] target = Base64.decode(decodedTarget);
-		System.out.println("target : " + target);
-
+//		byte[] target = Base64.decode(decodedTarget);
+//		System.out.println("target : " + target);
 	}
 
 	private String generateSAMLRequest(AuthnRequest authRequest) throws Exception {
@@ -78,16 +72,32 @@ public class RequestBuilderTest {
 		String messageXML = rspWrt.toString();
 		System.out.println(messageXML);
 
-		Deflater deflater = new Deflater(Deflater.DEFLATED, true);
-		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-		DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(byteArrayOutputStream, deflater);
-		deflaterOutputStream.write(messageXML.getBytes());
-		deflaterOutputStream.close();
-		byte[] target = byteArrayOutputStream.toByteArray();
-		System.out.println("target : " + target);
-		String encodedTarget = Base64.encodeBytes(target, Base64.DONT_BREAK_LINES);
-		System.out.println("EncodedTarget : " + encodedTarget);
-		return URLEncoder.encode(encodedTarget, "UTF-8");
+//		Deflater deflater = new Deflater(Deflater.DEFLATED, true);
+//		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//		DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(byteArrayOutputStream, deflater);
+//		deflaterOutputStream.write(messageXML.getBytes());
+//		deflaterOutputStream.close();
+//		byte[] target = byteArrayOutputStream.toByteArray();
+		
+//		System.out.println("target : " + target);
+		
+		byte[] messageXMLData = messageXML.getBytes("UTF-8");
+		byte[] output = new byte[1000];
+		
+		System.out.println("messageXMLData : " + messageXMLData);
+		Deflater deflater = new Deflater();
+		deflater.setInput(messageXMLData);
+		deflater.finish();
+		int targetDataLength = deflater.deflate(output);
+		System.out.println("messageXMLData : " + messageXMLData);
+		
+		String encodedOutput = Base64.encodeBytes(messageXMLData, Base64.DONT_BREAK_LINES);
+		System.out.println("EncodedOutput : " + encodedOutput);
+		
+//		String encodedTarget = Base64.encodeBytes(output, Base64.DONT_BREAK_LINES);
+//		System.out.println("EncodedTarget : " + encodedTarget);
+		
+		return URLEncoder.encode(encodedOutput, "UTF-8");
 
 	}
 
