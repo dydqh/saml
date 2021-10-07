@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml2p:Response
+	xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol" Destination="Test"
+	ID="c8fb2d32-9e03-4d57-b53e-565c402e0849"
+	IssueInstant="2021-10-07T01:44:20.837Z" Version="2.0">
+	<saml2p:Status>
+		<saml2p:StatusCode
+			Value="urn:oasis:names:tc:SAML:2.0:status:Success" />
+	</saml2p:Status>
+	<saml2:Assertion
+		xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+		ID="96586478-2d44-41c2-951a-554738697bd5"
+		IssueInstant="2021-10-07T01:44:20.819Z" Version="2.0">
+		<saml2:AuthnStatement>
+			<saml2:AuthnContext>
+				<saml2:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml2:AuthnContextClassRef>
+			</saml2:AuthnContext>
+		</saml2:AuthnStatement>
+	</saml2:Assertion>
+</saml2p:Response>

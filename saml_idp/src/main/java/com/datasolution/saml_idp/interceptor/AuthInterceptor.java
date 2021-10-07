@@ -1,37 +1,10 @@
 package com.datasolution.saml_idp.interceptor;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.joda.time.DateTime;
-import org.opensaml.common.binding.BasicSAMLMessageContext;
-import org.opensaml.common.binding.decoding.SAMLMessageDecoder;
-import org.opensaml.common.binding.encoding.SAMLMessageEncoder;
-import org.opensaml.saml2.core.Assertion;
-import org.opensaml.saml2.core.AuthnRequest;
-import org.opensaml.saml2.core.Issuer;
-import org.opensaml.saml2.core.Response;
-import org.opensaml.saml2.core.Status;
-import org.opensaml.saml2.core.StatusCode;
-import org.opensaml.saml2.metadata.Endpoint;
-import org.opensaml.saml2.metadata.SingleSignOnService;
-import org.opensaml.ws.security.SecurityPolicyResolver;
-import org.opensaml.ws.transport.http.HttpServletResponseAdapter;
-import org.opensaml.xml.security.credential.Credential;
-import org.opensaml.xml.validation.ValidatorSuite;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.saml.context.SAMLMessageContext;
-import org.springframework.security.saml.key.KeyManager;
 import org.springframework.web.servlet.HandlerInterceptor;
-
-import com.datasolution.saml_idp.serviceCopy.LocalSamlPrincipalFactory;
-import com.datasolution.saml_idp.serviceCopy.SamlBuilder;
-import com.datasolution.saml_idp.serviceCopy.SamlMessageHandler;
-import com.datasolution.saml_idp.serviceCopy.SamlPrincipal;
 
 public class AuthInterceptor implements HandlerInterceptor {
 

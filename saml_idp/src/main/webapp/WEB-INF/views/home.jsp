@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SAML Login Example</title>
 </head>
 <body>
 	<h1>IdP</h1>
